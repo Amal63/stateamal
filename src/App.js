@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { Component } from "react";
+export default class App extends Component {
+  state = {
+    Fulname: "amal",
+    bio: "islamic finance",
+    img:"https://sf.viepratique.fr/wp-content/uploads/sites/2/2014/02/shutterstock_162125588.jpg",
+    pro: "doctorat",
+    isShown: true,
+    count:0
+  };
+  handelshow =() =>{this.setState({
+    isShown:!this.state.isShown
+  })}
+  componentDidMount (){
+    setInterval(() => {
+      this.setState({ count:this.state.count+1
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      })
+    }, 1000);
+  }
+
+  render() {
+    return (
+    <div>
+      <p>{this.state.count}</p>
+        <button onClick={this.handelshow} >show profile </button>
+      {this.state.isShown===true?<div>
+        <h1> {this.state.Fulname}</h1>
+      <h2>{this.state.bio}</h2>
+      <h4>{this.state.pro}</h4>
+      <img src={this.state.img} alt =""/>
+      </div>:<h1>click on the button to show the profile </h1>}  
+    </div>)
+  }
 }
 
-export default App;
